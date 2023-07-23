@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Edit">
+
+    <RelativeLayout
+        android:id="@+id/layoutAddUser"
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:background="#D4D5D6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            >
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_home_24"/>
+
+            <ImageButton
+                android:id="@+id/edit"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_edit_24"/>
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_search_24"/>
+            <ImageButton
+                android:id="@+id/menu"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_menu_24"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/btn_AddUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FF4081"
+            android:text="Add Student" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FF4081"
+            android:layout_marginTop="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="60dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

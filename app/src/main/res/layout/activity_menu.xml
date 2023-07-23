@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:background="#D4D5D6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            >
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_home_24"/>
+            <ImageButton
+                android:id="@+id/edit"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_edit_24"/>
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_search_24"/>
+            <ImageButton
+                android:id="@+id/menu"
+                android:layout_width="270px"
+                android:layout_height="200px"
+                android:src="@drawable/baseline_menu_24"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textSize="200dp"></TextView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

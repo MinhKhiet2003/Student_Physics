@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity_profile_User">
+
+    <!-- Ảnh sinh viên -->
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop" />
+
+    <!-- Họ và tên -->
+    <TextView
+        android:id="@+id/tvNameUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImage"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Nguyễn Văn A"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <!-- Mã sinh viên -->
+    <TextView
+        android:id="@+id/tvStudentID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvNameUser"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Mã sinh viên: 123456"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- Ngày tháng năm sinh -->
+    <TextView
+        android:id="@+id/tvDateOfBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvStudentID"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Ngày sinh: 01/01/2003"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- Giới tính -->
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDateOfBirth"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Giới tính: Nam"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- Địa chỉ -->
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvGender"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Địa chỉ: Ninh Bình, Việt Nam"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+</RelativeLayout>
