@@ -1,5 +1,7 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
+import android.content.res.Resources;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -20,6 +22,7 @@ public class User implements Serializable {
         this.dateOfBirth= dateOfBirth;
         this.gioiTinh = gioiTinh;
     }
+
 
     public int getResourceID() {
         return resourceID;

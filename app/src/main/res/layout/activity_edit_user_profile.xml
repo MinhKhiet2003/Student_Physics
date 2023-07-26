@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Họ và tên:"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewName"
+        android:layout_marginTop="8dp"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textViewMsv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etName"
+        android:layout_marginTop="16dp"
+        android:text="Mã sinh viên:"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/etMsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewMsv"
+        android:layout_marginTop="8dp"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etMsv"
+        android:layout_marginTop="16dp"
+        android:text="Địa chỉ:"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/etAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddress"
+        android:layout_marginTop="8dp"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:id="@+id/textViewDateOfBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etAddress"
+        android:layout_marginTop="16dp"
+        android:text="Ngày sinh:"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/etDateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDateOfBirth"
+        android:layout_marginTop="8dp"
+        android:inputType="date" />
+
+    <TextView
+        android:id="@+id/textViewGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etDateOfBirth"
+        android:layout_marginTop="16dp"
+        android:text="Giới tính:"
+        android:textSize="18sp"/>
+
+    <RadioGroup
+        android:id="@+id/rgGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewGender"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nam"
+            android:layout_marginEnd="16dp" />
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nữ" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rgGender"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Lưu" />
+
+</RelativeLayout>

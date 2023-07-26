@@ -2,9 +2,11 @@ package com.example.baitaplonquanlysinhvienhnue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Edit extends AppCompatActivity {
+    private List<User> userList = new ArrayList<>();
     RecyclerView rcvData;
     UserAdapter userAdapter;
     ImageButton home;
@@ -33,8 +36,22 @@ public class Edit extends AppCompatActivity {
         rcvData.setLayoutManager(linearLayoutManager);
         userAdapter = new UserAdapter(this, getListUser());
         rcvData.setAdapter(userAdapter);
-            btnAddUser.setOnClickListener(view -> startActivity(new Intent(Edit.this, activity_AddUser.class)));
+        btnAddUser.setOnClickListener(view -> startActivity(new Intent(Edit.this, activity_AddUser.class)));
 
+        // Tạo adapter với danh sách người dùng ban đầu
+        userList = getListUser(); // Lấy danh sách người dùng ban đầu
+        userAdapter = new UserAdapter(this, userList);
+        rcvData.setAdapter(userAdapter);
+
+        // Kiểm tra xem Intent có chứa thông tin người dùng không
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("user")) {
+            User user = (User) intent.getSerializableExtra("user");
+            // Thêm thông tin người dùng mới vào danh sách
+            userList.add(user);
+            // Cập nhật adapter
+            userAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -52,6 +69,7 @@ public class Edit extends AppCompatActivity {
         return list;
     }
 
+    @SuppressLint("WrongViewCast")
     private void addView(){
         home=findViewById(R.id.home);
         edit=findViewById(R.id.edit);

@@ -1,6 +1,5 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class activity_profile_User extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +21,7 @@ public class activity_profile_User extends AppCompatActivity {
         TextView tvGioiTinh = findViewById(R.id.tvGender);
         TextView tvAddress = findViewById(R.id.tvAddress);
         ImageView imgAvt = findViewById(R.id.profileImage);
+        TextView tvDateOfBirth = findViewById(R.id.tvDateOfBirth);
         if (user.getGioiTinh() == true){
             tvGioiTinh.setText("Giới tính: Nam");
             imgAvt.setImageResource(R.drawable.male);
@@ -33,5 +32,7 @@ public class activity_profile_User extends AppCompatActivity {
         tvMSV.setText(user.getMsv());
         tvNameUser.setText(user.getName());
         tvAddress.setText("Địa chỉ: " + user.getAddress());
+        tvDateOfBirth.setText(user.getDateOfBirth());
+
     }
 }

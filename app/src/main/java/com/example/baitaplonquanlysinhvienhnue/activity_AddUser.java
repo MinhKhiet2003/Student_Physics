@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.List;
 
 public class activity_AddUser extends AppCompatActivity {
-
+    List<User> listUser;
+    UserAdapter userAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final int PICK_IMAGE_REQUEST = 1;
@@ -63,7 +65,6 @@ public class activity_AddUser extends AppCompatActivity {
             TextView etMsv = findViewById(R.id.etMsv);
             TextView etDateOfBirth = findViewById(R.id.etDateOfBirth);
 
-
             // Tạo đối tượng User mới từ dữ liệu được nhập
             String name = etName.getText().toString().trim();
             String msv = etMsv.getText().toString().trim();
@@ -79,6 +80,9 @@ public class activity_AddUser extends AppCompatActivity {
 //                    // Ví dụ: Toast.makeText(activity_AddUser.this, "Vui lòng chọn ảnh trước khi lưu", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
+
+            // Tạo đối tượng User mới từ dữ liệu được nhập
+            User newUser = new User(R.drawable.male, name, msv, address, dateOfBirth, isMale);
             // Hiển thị thông tin User bằng Toast
             String userInfo = "Họ và tên: " + name + "\n"
                     + "Mã sinh viên: " + msv + "\n"
@@ -87,7 +91,10 @@ public class activity_AddUser extends AppCompatActivity {
                     + "Giới tính: " + (isMale ? "Nam" : "Nữ");
 
             Toast.makeText(activity_AddUser.this, userInfo, Toast.LENGTH_LONG).show();
-
+            // Chuyển dữ liệu của người dùng mới thêm vào activity_edit_user để hiển thị thông tin và cho phép chỉnh sửa
+            Intent intentEditUser = new Intent(activity_AddUser.this, Edit.class);
+            intentEditUser.putExtra("user", newUser);
+            startActivity(intentEditUser);
         });
     }
 }

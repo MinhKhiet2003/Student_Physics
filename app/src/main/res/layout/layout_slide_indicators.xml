@@ -1,0 +1,30 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/indicatorContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/dot1"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_dot_active" />
+
+    <ImageView
+        android:id="@+id/dot2"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_dot_active" />
+    <ImageView
+        android:id="@+id/dot3"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_dot_active" />
+
+    <!-- Thêm các dấu chấm khác tùy theo số lượng slide -->
+</LinearLayout>
