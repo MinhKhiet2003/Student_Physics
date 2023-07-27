@@ -64,13 +64,26 @@ public class activity_AddUser extends AppCompatActivity {
             TextView etAddress = findViewById(R.id.etAddress);
             TextView etMsv = findViewById(R.id.etMsv);
             TextView etDateOfBirth = findViewById(R.id.etDateOfBirth);
+            TextView etEmail = findViewById(R.id.etEmail);
+            TextView etClass = findViewById(R.id.etClassName);
+            TextView etPhoneNumber = findViewById(R.id.etPhoneNumber);
+
+
+
 
             // Tạo đối tượng User mới từ dữ liệu được nhập
-            String name = etName.getText().toString().trim();
             String msv = etMsv.getText().toString().trim();
-            String address = etAddress.getText().toString().trim();
+            String name = etName.getText().toString().trim();
             String dateOfBirth = etDateOfBirth.getText().toString().trim();
+            String address = etAddress.getText().toString().trim();
+            String className = etClass.getText().toString().trim();
+            String Email = etEmail.getText().toString().trim();
+            String PhoneNumber = etPhoneNumber.getText().toString().trim();
+
+
+
             int genderID = rgGender.getCheckedRadioButtonId();
+
             boolean isMale = genderID == R.id.rbMale;
 
 //                // Kiểm tra xem đã chọn ảnh hay chưa
@@ -82,13 +95,16 @@ public class activity_AddUser extends AppCompatActivity {
 //                }
 
             // Tạo đối tượng User mới từ dữ liệu được nhập
-            User newUser = new User(R.drawable.male, name, msv, address, dateOfBirth, isMale);
+            User newUser = new User(R.drawable.male, name, msv, address, dateOfBirth, isMale,className, Email, PhoneNumber);
             // Hiển thị thông tin User bằng Toast
             String userInfo = "Họ và tên: " + name + "\n"
                     + "Mã sinh viên: " + msv + "\n"
                     + "Địa chỉ: " + address + "\n"
                     + "Ngày sinh: " + dateOfBirth + "\n"
-                    + "Giới tính: " + (isMale ? "Nam" : "Nữ");
+                    + "Giới tính: " + (isMale ? "Nam" : "Nữ") + "\n"
+                    + "lớp: " + className + "\n"
+                    + "email: " + Email + "\n"
+                    + "Phone: " + PhoneNumber;
 
             Toast.makeText(activity_AddUser.this, userInfo, Toast.LENGTH_LONG).show();
             // Chuyển dữ liệu của người dùng mới thêm vào activity_edit_user để hiển thị thông tin và cho phép chỉnh sửa

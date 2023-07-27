@@ -13,19 +13,29 @@ public class User implements Serializable {
 
     private String dateOfBirth;
     private Boolean gioiTinh;
+    private String email;
+    private String className;
+    private String phoneNumber;
 
-    public User(int resourceID, String name, String msv, String adress, String dateOfBirth, Boolean gioiTinh) {
+    public User(int resourceID, String name, String msv, String adress, String dateOfBirth, Boolean gioiTinh,String className, String email, String phoneNumber) {
         this.resourceID = resourceID;
         this.name = name;
         this.msv = msv;
         this.address = adress;
         this.dateOfBirth= dateOfBirth;
         this.gioiTinh = gioiTinh;
+        this.className = className;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
 
     public int getResourceID() {
         return resourceID;
+    }
+
+    public void setResourceID(int resourceID) {
+        this.resourceID = resourceID;
     }
 
     public String getName() {
@@ -40,7 +50,7 @@ public class User implements Serializable {
         return msv;
     }
 
-    public void setMsv(String adress) {
+    public void setMsv(String msv) {
         this.msv = msv;
     }
 
@@ -48,15 +58,15 @@ public class User implements Serializable {
         return address;
     }
 
-    public void setAddress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String adress) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -68,5 +78,27 @@ public class User implements Serializable {
         this.gioiTinh = gioiTinh;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

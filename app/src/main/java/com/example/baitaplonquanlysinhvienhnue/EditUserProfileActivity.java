@@ -1,28 +1,36 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EditUserProfileActivity extends AppCompatActivity {
 //    Context context;
-    private EditText etName;
-    private EditText etMsv;
-    private EditText etAddress;
-    private EditText etDateOfBirth;
-    private RadioGroup rgGender;
-    private User user;
+     EditText etName;
+     EditText etMsv;
+     EditText etAddress;
+     EditText etDateOfBirth;
+     RadioGroup rgGender;
+     User user;
+
+    EditText etEmail;
+    EditText etclassName;
+
+     EditText etPhoneNumber;
 
     public EditUserProfileActivity(User user) {
         this.user = user;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +47,9 @@ public class EditUserProfileActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.etAddress);
         etDateOfBirth = findViewById(R.id.etDateOfBirth);
         rgGender = findViewById(R.id.rgGender);
-
+        etclassName = findViewById(R.id.etClassName);
+        etEmail = findViewById(R.id.etEmail);
+        etPhoneNumber = findViewById(R.id.etPhoneNumber);
         // Lấy dữ liệu người dùng từ Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("object_user")) {
@@ -48,6 +58,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
             etMsv.setText(user.getMsv());
             etAddress.setText(user.getAddress());
             etDateOfBirth.setText(user.getDateOfBirth());
+
 
             // Chọn giới tính dựa vào thông tin người dùng
             if (user.getGioiTinh()) {
@@ -65,6 +76,9 @@ public class EditUserProfileActivity extends AppCompatActivity {
             String msv = etMsv.getText().toString().trim();
             String address = etAddress.getText().toString().trim();
             String dateOfBirth = etDateOfBirth.getText().toString().trim();
+            String className = etclassName.getText().toString().trim();
+            String Email = etEmail.getText().toString().trim();
+            String PhoneNumber = etPhoneNumber.getText().toString().trim();
             int genderID = rgGender.getCheckedRadioButtonId();
             boolean isMale = genderID == R.id.rbMale;
 
@@ -81,7 +95,10 @@ public class EditUserProfileActivity extends AppCompatActivity {
                     + "Mã sinh viên: " + msv + "\n"
                     + "Địa chỉ: " + address + "\n"
                     + "Ngày sinh: " + dateOfBirth + "\n"
-                    + "Giới tính: " + (isMale ? "Nam" : "Nữ");
+                    + "Giới tính: " + (isMale ? "Nam" : "Nữ") + "\n"
+                    + "lớp: " + className + "\n"
+                    + "email: " + Email + "\n"
+                    + "Phone: " + PhoneNumber;
 
             Toast.makeText(EditUserProfileActivity.this, userInfo, Toast.LENGTH_LONG).show();
 

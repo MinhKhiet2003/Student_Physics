@@ -63,15 +63,51 @@
         android:textColor="@color/black"
         android:textSize="18sp" />
 
-    <!-- Địa chỉ -->
+    <!-- className -->
     <TextView
-        android:id="@+id/tvAddress"
+        android:id="@+id/tvClassName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvGender"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"
+        android:text="Lớp: K71E2"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- Địa chỉ -->
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvClassName"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
         android:text="Địa chỉ: Ninh Bình, Việt Nam"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- phoneNumber -->
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAddress"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Số điện thoại: 0987666888"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- Email -->
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPhoneNumber"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Email: 715105120@hnue.edu.vn"
         android:textColor="@color/black"
         android:textSize="18sp" />
 

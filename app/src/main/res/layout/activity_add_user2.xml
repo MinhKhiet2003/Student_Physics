@@ -24,13 +24,6 @@
             android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Họ và tên"
-            android:padding="20dp"/>
-
-        <EditText
             android:id="@+id/etMsv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,10 +31,10 @@
             android:padding="20dp"/>
 
         <EditText
-            android:id="@+id/etAddress"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Địa chỉ"
+            android:hint="Họ và tên"
             android:padding="20dp"/>
 
         <EditText
@@ -51,6 +44,35 @@
             android:hint="Ngày sinh"
             android:padding="20dp"
             />
+
+        <EditText
+            android:id="@+id/etClassName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên lớp"
+            android:padding="20dp"
+            />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="số điện thoại"
+            android:padding="20dp"/>
 
         <RadioGroup
             android:id="@+id/rgGender"

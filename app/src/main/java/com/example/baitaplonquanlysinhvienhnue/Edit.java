@@ -57,14 +57,14 @@ public class Edit extends AppCompatActivity {
 
     private List<User> getListUser() {
         List<User> list = new ArrayList<>();
-        list.add(new User(R.drawable.male, "Ta Minh Khiet","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true));
-        list.add(new User(R.drawable.male, "Nguyen Thanh Huy","715105120", "Quang Ninh, Viet Nam", "01/01/2003", true));
-        list.add(new User(R.drawable.male, "Nguyen Duc Hung","715105120", "Ha Noi, Viet Nam", "01/01/2003", true));
-        list.add(new User(R.drawable.female, "Tran Thao My","715105120", "Hai Phong, Viet Nam", "01/01/2003", false));
-        list.add(new User(R.drawable.female, "Pham Ngoc Hoa","715105120", "Phu Tho, Viet Nam", "01/01/2003", false));
-        list.add(new User(R.drawable.male, "Pham Minh Phuong","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true));
-        list.add(new User(R.drawable.male, "Nguyen Van Hao Lan","715105120", "Hai Phong, Viet Nam", "01/01/2003", true));
-        list.add(new User(R.drawable.male, "Do Quang Huy","715105120", "Hai Phong, Viet Nam", "01/01/2003", true));
+        list.add(new User(R.drawable.male, "Ta Minh Khiet","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true,"K71E2", "stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.male, "Nguyen Thanh Huy","715105120", "Quang Ninh, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.male, "Nguyen Duc Hung","715105120", "Ha Noi, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.female, "Tran Thao My","715105120", "Hai Phong, Viet Nam", "01/01/2003", false, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.female, "Pham Ngoc Hoa","715105120", "Phu Tho, Viet Nam", "01/01/2003", false, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.male, "Pham Minh Phuong","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.male, "Nguyen Van Hao Lan","715105120", "Hai Phong, Viet Nam", "01/01/2003", true,"K71E2","stu715105120@hnue.edu.vn", "109853221"));
+        list.add(new User(R.drawable.male, "Do Quang Huy","715105120", "Hai Phong, Viet Nam", "01/01/2003", true,"K71E2","stu715105120@hnue.edu.vn", "109853221"));
 
         return list;
     }
