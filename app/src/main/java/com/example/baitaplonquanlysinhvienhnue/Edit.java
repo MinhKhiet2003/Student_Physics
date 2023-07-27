@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Edit extends AppCompatActivity {
     private List<User> userList = new ArrayList<>();
@@ -34,12 +39,12 @@ public class Edit extends AppCompatActivity {
         rcvData = findViewById(R.id.rcv_data);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
-        userAdapter = new UserAdapter(this, getListUser());
+        userAdapter = new UserAdapter(this, userList);
         rcvData.setAdapter(userAdapter);
         btnAddUser.setOnClickListener(view -> startActivity(new Intent(Edit.this, activity_AddUser.class)));
 
         // Tạo adapter với danh sách người dùng ban đầu
-        userList = getListUser(); // Lấy danh sách người dùng ban đầu
+//        userList = getListUser(); // Lấy danh sách người dùng ban đầu
         userAdapter = new UserAdapter(this, userList);
         rcvData.setAdapter(userAdapter);
 
@@ -52,22 +57,33 @@ public class Edit extends AppCompatActivity {
             // Cập nhật adapter
             userAdapter.notifyDataSetChanged();
         }
+        fetchUsers();
     }
 
 
-    private List<User> getListUser() {
-        List<User> list = new ArrayList<>();
-        list.add(new User(R.drawable.male, "Ta Minh Khiet","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true,"K71E2", "stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.male, "Nguyen Thanh Huy","715105120", "Quang Ninh, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.male, "Nguyen Duc Hung","715105120", "Ha Noi, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.female, "Tran Thao My","715105120", "Hai Phong, Viet Nam", "01/01/2003", false, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.female, "Pham Ngoc Hoa","715105120", "Phu Tho, Viet Nam", "01/01/2003", false, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.male, "Pham Minh Phuong","715105120", "Ninh Binh, Viet Nam", "01/01/2003", true, "K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.male, "Nguyen Van Hao Lan","715105120", "Hai Phong, Viet Nam", "01/01/2003", true,"K71E2","stu715105120@hnue.edu.vn", "109853221"));
-        list.add(new User(R.drawable.male, "Do Quang Huy","715105120", "Hai Phong, Viet Nam", "01/01/2003", true,"K71E2","stu715105120@hnue.edu.vn", "109853221"));
+    private void fetchUsers() {
+        ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
+        Call<List<User>> callGet = apiService.getUsers();
+        callGet.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()) {
+                    userList.addAll(response.body());
+                    userAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(Edit.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-        return list;
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e("API_CALL_ERROR", "API call failed", t);
+                Toast.makeText(Edit.this, "API call failed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
+
 
     @SuppressLint("WrongViewCast")
     private void addView(){

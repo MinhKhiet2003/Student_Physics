@@ -25,7 +25,7 @@ public class activity_profile_User extends AppCompatActivity {
         TextView tvClassName = findViewById(R.id.tvClassName);
         TextView tvPhoneNumber = findViewById(R.id.tvPhoneNumber);
         TextView tvDateOfBirth = findViewById(R.id.tvDateOfBirth);
-        if (user.getGioiTinh() == true){
+        if (user.isGender() == true){
             tvGioiTinh.setText("Giới tính: Nam");
             imgAvt.setImageResource(R.drawable.male);
         }else{
@@ -35,10 +35,10 @@ public class activity_profile_User extends AppCompatActivity {
         tvClassName.setText("Lớp: " + user.getClassName());
         tvEmail.setText("Email: " + user.getEmail());
         tvPhoneNumber.setText("Số diện thoại: " + user.getPhoneNumber());
-        tvMSV.setText(user.getMsv());
-        tvNameUser.setText(user.getName());
-        tvAddress.setText("Địa chỉ: " + user.getAddress());
-        tvDateOfBirth.setText(user.getDateOfBirth());
+        tvMSV.setText(user.getStudentId());
+        tvNameUser.setText(user.getFullName());
+        tvAddress.setText("Địa chỉ: " + user.getHome());
+        tvDateOfBirth.setText(user.getDate());
 
     }
 }

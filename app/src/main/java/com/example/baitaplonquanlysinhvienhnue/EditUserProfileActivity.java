@@ -54,14 +54,14 @@ public class EditUserProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("object_user")) {
             // Hiển thị thông tin người dùng lên giao diện
-            etName.setText(user.getName());
-            etMsv.setText(user.getMsv());
-            etAddress.setText(user.getAddress());
-            etDateOfBirth.setText(user.getDateOfBirth());
+            etName.setText(user.getFullName());
+            etMsv.setText(user.getStudentId());
+            etAddress.setText(user.getHome());
+            etDateOfBirth.setText(user.getDate());
 
 
             // Chọn giới tính dựa vào thông tin người dùng
-            if (user.getGioiTinh()) {
+            if (user.isGender()) {
                 rgGender.check(R.id.rbMale);
             } else {
                 rgGender.check(R.id.rbFemale);
@@ -83,11 +83,11 @@ public class EditUserProfileActivity extends AppCompatActivity {
             boolean isMale = genderID == R.id.rbMale;
 
             // Cập nhật thông tin người dùng trong đối tượng user
-            user.setName(name);
-            user.setMsv(msv);
-            user.setAddress(address);
-            user.setDateOfBirth(dateOfBirth);
-            user.setGioiTinh(isMale);
+            user.setFullName(name);
+            user.setStudentId(msv);
+            user.setHome(address);
+            user.setDate(dateOfBirth);
+            user.setGender(isMale);
 
             // Hiển thị thông tin đã cập nhật lên Toast hoặc có thể chuyển dữ liệu về Activity trước (activity_Edit) để cập nhật danh sách người dùng.
             String userInfo = "Thông tin đã được cập nhật:\n"

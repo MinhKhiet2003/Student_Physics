@@ -46,8 +46,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
         }
 
         holder.imgAvatar.setImageResource(user.getResourceID());
-        holder.tvName.setText(user.getName());
-        holder.tvID.setText(user.getMsv());
+        holder.tvName.setText(user.getFullName());
+        holder.tvID.setText(user.getStudentId());
 //        holder.layoutItem.setOnClickListener(view -> onclickGoToProfileUser(user));
 
 
@@ -55,7 +55,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
             @Override
             public void onSwipeLeft() {
                 // Kiểm tra nếu không ở trạng thái click, thực hiện vuốt trái
-                showDeleteAlertDialog(user.getName(), position);
+                showDeleteAlertDialog(user.getFullName(), position);
             }
             // Phương thức hiển thị AlertDialog để xác nhận việc xoá
             private void showDeleteAlertDialog(String userName, int position) {

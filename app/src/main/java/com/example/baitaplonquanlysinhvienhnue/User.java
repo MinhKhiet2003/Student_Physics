@@ -1,34 +1,30 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
-import android.content.res.Resources;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
     int resourceID;
-    private String name;
-    private String msv;
-
-    private String address;
-
-    private String dateOfBirth;
-    private Boolean gioiTinh;
-    private String email;
+    private int image;
+    private String studentId;
+    private String fullName;
     private String className;
+    private String date;
+    private String home;
+    private boolean gender;
+    private String email;
     private String phoneNumber;
 
-    public User(int resourceID, String name, String msv, String adress, String dateOfBirth, Boolean gioiTinh,String className, String email, String phoneNumber) {
-        this.resourceID = resourceID;
-        this.name = name;
-        this.msv = msv;
-        this.address = adress;
-        this.dateOfBirth= dateOfBirth;
-        this.gioiTinh = gioiTinh;
+    public User(String studentId, String fullName, String date, String home, String className,boolean gender,String email,String phoneNumber) {
+        this.studentId = studentId;
+        this.fullName = fullName;
+        this.date = date;
+        this.home = home;
         this.className = className;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
+        this.gender=gender;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
 
+    }
 
     public int getResourceID() {
         return resourceID;
@@ -38,52 +34,28 @@ public class User implements Serializable {
         this.resourceID = resourceID;
     }
 
-    public String getName() {
-        return name;
+    public int getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setImage(int image) {
+        this.image = image;
     }
 
-    public String getMsv() {
-        return msv;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setMsv(String msv) {
-        this.msv = msv;
+    public void setStudentId(String studentId) {
+        studentId = studentId;
     }
 
-    public String getAddress() {
-        return address;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Boolean getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(Boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getClassName() {
@@ -92,6 +64,38 @@ public class User implements Serializable {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhoneNumber() {
