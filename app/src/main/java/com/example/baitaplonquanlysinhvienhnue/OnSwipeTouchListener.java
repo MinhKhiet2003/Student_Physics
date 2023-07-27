@@ -10,9 +10,11 @@ abstract class OnSwipeTouchListener implements View.OnTouchListener {
 
     private final GestureDetector gestureDetector;
     private int swipedPosition = -1;
+    private UserAdapter adapter;
 
-    OnSwipeTouchListener(Context context) {
+    OnSwipeTouchListener(Context context, UserAdapter adapter) {
         gestureDetector = new GestureDetector(context, new GestureListener());
+        this.adapter = this.adapter; // Gán giá trị cho biến adapter
     }
 
     @SuppressLint("ClickableViewAccessibility")

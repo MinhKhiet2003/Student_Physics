@@ -61,7 +61,7 @@ public class Edit extends AppCompatActivity {
     }
 
 
-    private void fetchUsers() {
+   public void fetchUsers() {
         ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
         Call<List<User>> callGet = apiService.getUsers();
         callGet.enqueue(new Callback<List<User>>() {

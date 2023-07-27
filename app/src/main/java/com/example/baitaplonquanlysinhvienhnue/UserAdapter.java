@@ -19,14 +19,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder>{
     List<User> listUser;
     Context context;
     int swipedPosition = -1;
+    private final UserAdapter adapter;
+    public void updateSwipedPosition(int position) {
+        swipedPosition = position;
+    }
 
     public UserAdapter(Context context, List<User> listUser) {
         this.context = context;
         this.listUser = listUser;
+        adapter = this;
     }
 
     @NonNull
@@ -51,7 +60,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
 //        holder.layoutItem.setOnClickListener(view -> onclickGoToProfileUser(user));
 
 
-        holder.layoutItem.setOnTouchListener(new OnSwipeTouchListener(context) {
+        holder.layoutItem.setOnTouchListener(new OnSwipeTouchListener(context, adapter) {
             @Override
             public void onSwipeLeft() {
                 // Kiểm tra nếu không ở trạng thái click, thực hiện vuốt trái
@@ -64,10 +73,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
                 builder.setMessage("Bạn có chắc chắn muốn xoá người dùng " + userName + " không?");
                 builder.setPositiveButton("Có", (dialog, which) -> {
                     // Xử lý hành động Delete ở đây
-                    listUser.remove(position);
-                    notifyDataSetChanged();
-                    setSwipedPosition(-1);
-                    Toast.makeText(context, "Deleted user: " + userName, Toast.LENGTH_SHORT).show();
+//                    listUser.remove(position);
+//                    notifyDataSetChanged();
+//                    setSwipedPosition(-1);
+//                    Toast.makeText(context, "Deleted user: " + userName, Toast.LENGTH_SHORT).show();
+                    String userId = user.getStudentId();
+                    deleteUserFromServer(userId, position, userName);
                 });
                 builder.setNegativeButton("Không", (dialog, which) -> {
                     // Không làm gì cả, đơn giản chỉ đóng AlertDialog
@@ -101,6 +112,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
 
         // Hiển thị hoặc ẩn button Edit và Delete dựa trên trạng thái vuốt
         holder.setSwipeState(swipedPosition == position);
+    }
+
+    private void deleteUserFromServer(String userId, int position, String userName) {
+        ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
+        Call<Void> call = apiService.deleteUser(userId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // User deleted successfully from the server
+                    listUser.remove(position);
+                    notifyDataSetChanged();
+                    adapter.updateSwipedPosition(-1);
+                    Toast.makeText(context, "Deleted user: " + userName, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Handle error response
+                    Toast.makeText(context, "Failed to delete user", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Handle network or other errors
+                Toast.makeText(context, "Failed to delete user", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void onclickGoToProfileUser(User user) {
