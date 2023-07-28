@@ -17,18 +17,27 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder>{
-    List<User> listUser;
+    private List<User> listUser = new ArrayList<User>();
     Context context;
     int swipedPosition = -1;
-    private final UserAdapter adapter;
-    public void updateSwipedPosition(int position) {
+    UserAdapter adapter;
+    public UserAdapter(List<User> listUser) {
+        this.listUser = listUser;
+    }
+    public void setFilteredList(List<User> filterdList){
+        this.listUser=filterdList;
+        notifyDataSetChanged();
+    }    public void updateSwipedPosition(int position) {
         swipedPosition = position;
     }
 
@@ -88,12 +97,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
 
             @Override
             public void onSwipeRight() {
-//                Intent intentEditProfileUser = new Intent(context, EditUserProfileActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("object_user", user);
-//                intentEditProfileUser.putExtras(bundle);
-//                context.startActivity(intentEditProfileUser);
-                onclickGoToProfileUser(user);
+                Intent intentEditProfileUser = new Intent(context, EditUserProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("object_user", user);
+                intentEditProfileUser.putExtras(bundle);
+                context.startActivity(intentEditProfileUser);
+//                onclickGoToProfileUser(user);
 
             }
 
@@ -113,6 +122,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
         // Hiển thị hoặc ẩn button Edit và Delete dựa trên trạng thái vuốt
         holder.setSwipeState(swipedPosition == position);
     }
+
+
 
     private void deleteUserFromServer(String userId, int position, String userName) {
         ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);

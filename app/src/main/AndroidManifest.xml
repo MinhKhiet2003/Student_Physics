@@ -18,6 +18,9 @@
             android:name=".activity_AddUser"
             android:exported="false" />
         <activity
+            android:name=".EditUserProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity_profile_User"
             android:exported="false" />
         <activity

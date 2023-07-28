@@ -1,113 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Họ và tên:"
-        android:textSize="18sp"
-        android:layout_marginTop="16dp"/>
-
-    <EditText
-        android:id="@+id/etName"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewName"
-        android:layout_marginTop="8dp"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textViewMsv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etName"
-        android:layout_marginTop="16dp"
-        android:text="Mã sinh viên:"
-        android:textSize="18sp"/>
+        <ImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"/>
 
-    <EditText
-        android:id="@+id/etMsv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewMsv"
-        android:layout_marginTop="8dp"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/textViewAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etMsv"
-        android:layout_marginTop="16dp"
-        android:text="Địa chỉ:"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/etAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewAddress"
-        android:layout_marginTop="8dp"
-        android:inputType="textPostalAddress" />
-
-    <TextView
-        android:id="@+id/textViewDateOfBirth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etAddress"
-        android:layout_marginTop="16dp"
-        android:text="Ngày sinh:"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/etDateOfBirth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewDateOfBirth"
-        android:layout_marginTop="8dp"
-        android:inputType="date" />
-
-    <TextView
-        android:id="@+id/textViewGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etDateOfBirth"
-        android:layout_marginTop="16dp"
-        android:text="Giới tính:"
-        android:textSize="18sp"/>
-
-    <RadioGroup
-        android:id="@+id/rgGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewGender"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rbMale"
+        <!-- Button để kích hoạt quá trình đăng tải ảnh -->
+        <Button
+            android:id="@+id/btnChooseImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nam"
-            android:layout_marginEnd="16dp" />
+            android:text="Chọn ảnh"
+            android:layout_gravity="center"/>
 
-        <RadioButton
-            android:id="@+id/rbFemale"
+        <EditText
+            android:id="@+id/etMsv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã sinh viên"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ và tên"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etDateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ngày sinh"
+            android:padding="20dp"
+            />
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Địa chỉ"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etClassName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên lớp"
+            android:padding="20dp"
+            />
+
+
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:padding="20dp"/>
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="số điện thoại"
+            android:padding="20dp"/>
+        <RadioGroup
+            android:id="@+id/rgGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nam" />
+
+            <RadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nữ"
+                android:layout_marginLeft="60dp"/>
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nữ" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rgGender"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:text="Lưu" />
-
-</RelativeLayout>
+            android:text="Lưu"/>
+    </LinearLayout>
+</ScrollView>
