@@ -1,18 +1,40 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
     int resourceID;
     private int image;
     private String studentId;
+
+    @SerializedName("fullName")
     private String fullName;
+
     private String className;
     private String date;
     private String home;
     private boolean gender;
+    @SerializedName("email")
     private String email;
+    @SerializedName("phoneNumber")
     private String phoneNumber;
+
+    @SerializedName("password")
+    private String password;
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+
+    public User(String fullName,String phoneNumber, String email, String password) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+    }
 
     public User(String studentId, String fullName, String date, String home, String className,boolean gender,String email,String phoneNumber) {
         this.studentId = studentId;
@@ -24,6 +46,14 @@ public class User implements Serializable {
         this.email=email;
         this.phoneNumber=phoneNumber;
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getResourceID() {

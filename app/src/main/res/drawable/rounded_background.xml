@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#06E3FF" /> <!-- Đổi màu này thành màu nền bạn muốn sử dụng -->
+        <corners
+            android:topLeftRadius="0dp"
+            android:topRightRadius="0dp"
+            android:bottomLeftRadius="50dp"
+            android:bottomRightRadius="50dp"
+            /> <!-- Đặt bán kính bo tròn ở đây, bạn có thể thay đổi giá trị 20dp thành bất kỳ giá trị nào bạn muốn -->
+
+    </shape>

@@ -22,4 +22,11 @@ public interface ApiSevice {
     @PUT("students/{id}")
     Call<Void> updateUser(@Path("id") String studentId, @Body User updatedUser);
 
+    @POST("register")
+    Call<Void> register(@Body User user);
+    @GET("login")
+    Call<List<User>> getUser();
+    @PUT("fogotpassword")
+    Call<Void> fogotpassword(@Body User user);
+
 }
