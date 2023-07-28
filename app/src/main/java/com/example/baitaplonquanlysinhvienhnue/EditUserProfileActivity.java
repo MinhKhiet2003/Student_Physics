@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditUserProfileActivity extends AppCompatActivity {
 //    Context context;
@@ -27,7 +35,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
     EditText etclassName;
 
      EditText etPhoneNumber;
-
+    UserAdapter adapter;
 
 
     @Override
@@ -91,33 +99,53 @@ public class EditUserProfileActivity extends AppCompatActivity {
         Button btnEdit = findViewById(R.id.btnEdit);
         btnEdit.setOnClickListener(v -> {
             // Lấy thông tin người dùng đã chỉnh sửa
-            String name = etName.getText().toString().trim();
-            String msv = etMsv.getText().toString().trim();
-            String address = etAddress.getText().toString().trim();
-            String dateOfBirth = etDateOfBirth.getText().toString().trim();
-            String className = etclassName.getText().toString().trim();
-            String Email = etEmail.getText().toString().trim();
-            String PhoneNumber = etPhoneNumber.getText().toString().trim();
+            String fullName = etName.getText().toString().trim();
+            String studentId = etMsv.getText().toString().trim();
+            String home = etAddress.getText().toString().trim();
+            String date = etDateOfBirth.getText().toString().trim();
+            String studentClass = etclassName.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String phoneNumber = etPhoneNumber.getText().toString().trim();
             int genderID = rgGender.getCheckedRadioButtonId();
             boolean isMale = genderID == R.id.rbMale;
-
+            ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
             // Cập nhật thông tin người dùng trong đối tượng user
-            user.setFullName(name);
-            user.setStudentId(msv);
-            user.setHome(address);
-            user.setDate(dateOfBirth);
-            user.setGender(isMale);
+            User userUpdate=new User(studentId,fullName,date,home,studentClass,isMale,email,phoneNumber);
+            Log.d("test", "StudentID " + userUpdate.getClassName());
+            apiService.updateUser(userUpdate.getStudentId(), userUpdate).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        // Xử lý phản hồi thành công ở đây (ví dụ: hiển thị thông báo thành công)
+                        Toast.makeText(EditUserProfileActivity.this, "Đã cập nhật thông tin người dùng thành công", Toast.LENGTH_SHORT).show();
+                        fetchUpdatedStudentList();
+                        Intent intent = new Intent(EditUserProfileActivity.this, Edit.class);
+                        startActivity(intent);
+                        finish(); // Đóng hoạt động sau khi cập nhật thành công
+                    } else {
+                        // Xử lý phản hồi không thành công ở đây (ví dụ: hiển thị thông báo lỗi)
+                        Toast.makeText(EditUserProfileActivity.this, "Không thể cập nhật thông tin người dùng", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    // Xử lý lỗi khi gọi API (ví dụ: lỗi kết nối mạng)
+                    Toast.makeText(EditUserProfileActivity.this, "Không thể kết nối với máy chủ", Toast.LENGTH_SHORT).show();
+                }
+            });
+
 
 //             Hiển thị thông tin đã cập nhật lên Toast hoặc có thể chuyển dữ liệu về Activity trước (activity_Edit) để cập nhật danh sách người dùng.
             String userInfo = "Thông tin đã được cập nhật:\n"
-                    + "Họ và tên: " + name + "\n"
-                    + "Mã sinh viên: " + msv + "\n"
-                    + "Địa chỉ: " + address + "\n"
-                    + "Ngày sinh: " + dateOfBirth + "\n"
+                    + "Họ và tên: " + fullName + "\n"
+                    + "Mã sinh viên: " + studentId+ "\n"
+                    + "Địa chỉ: " + home + "\n"
+                    + "Ngày sinh: " + date + "\n"
                     + "Giới tính: " + (isMale ? "Nam" : "Nữ") + "\n"
-                    + "lớp: " + className + "\n"
-                    + "email: " + Email + "\n"
-                    + "Phone: " + PhoneNumber;
+                    + "lớp: " + studentClass + "\n"
+                    + "email: " + email + "\n"
+                    + "Phone: " + phoneNumber;
 
 
 
@@ -127,8 +155,45 @@ public class EditUserProfileActivity extends AppCompatActivity {
 //             Ví dụ: Intent resultIntent = new Intent();
 //             resultIntent.putExtra("updated_user", user);
 //             setResult(RESULT_OK, resultIntent);
+
              finish();
         });
     }
+    private void fetchUpdatedStudentList() {
+        ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
+        apiService.getUsers().enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()) {
+                    List<User> updatedStudentList = response.body();
+                    updateStudentListOnUI(updatedStudentList);
+
+                } else {
+                    // Xử lý phản hồi không thành công ở đây (ví dụ: hiển thị thông báo lỗi)
+                    Toast.makeText(EditUserProfileActivity.this, "Không thể lấy danh sách sinh viên", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                // Xử lý lỗi khi gọi API (ví dụ: lỗi kết nối mạng)
+                Toast.makeText(EditUserProfileActivity.this, "Không thể kết nối với máy chủ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateStudentListOnUI(List<User> updatedStudentList) {
+        if (adapter == null) {
+            // Nếu chưa được khởi tạo, tạo một adapter mới và thiết lập nó cho RecyclerView
+            adapter = new UserAdapter(this, updatedStudentList);
+            RecyclerView recyclerView = findViewById(R.id.rcv_data);
+            recyclerView.setAdapter(adapter);
+        } else {
+            // Nếu đã có adapter, cập nhật danh sách sinh viên và thông báo cho adapter biết dữ liệu đã thay đổi
+            adapter.setFilteredList(updatedStudentList);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 }
 

@@ -31,6 +31,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.userViewHolder
     Context context;
     int swipedPosition = -1;
     UserAdapter adapter;
+
     public UserAdapter(List<User> listUser) {
         this.listUser = listUser;
     }
