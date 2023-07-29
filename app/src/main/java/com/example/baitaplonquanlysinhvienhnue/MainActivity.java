@@ -1,6 +1,8 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,10 +24,17 @@ public class MainActivity extends AppCompatActivity {
     ImageButton search;
     ImageButton menu;
     ImageView dot1,dot2,dot3;
+    ImageView dot4,dot5,dot6,dot7,dot8,dot9;
     private int[] slideshowImages = {
             R.drawable.img1,
             R.drawable.img2,
             R.drawable.img3,
+            R.drawable.img4,
+            R.drawable.img5,
+            R.drawable.img6,
+            R.drawable.img7,
+            R.drawable.img8,
+            R.drawable.img9,
             // Thêm thêm ID tài nguyên ảnh nếu cần
     };
     private LinearLayout dotLayout;
@@ -54,13 +65,31 @@ public class MainActivity extends AppCompatActivity {
         slideshowPagerAdapter = new SlideshowPagerAdapter(this, slideshowImages);
         viewPager.setAdapter(slideshowPagerAdapter);
 
+        List<Integer> imageList = new ArrayList<>();
+        imageList.add(R.drawable.home01);
+        imageList.add(R.drawable.home02);
+        imageList.add(R.drawable.home03);
+        // Thêm tấm ảnh khác từ drawable vào đây
+
+        RecyclerView recyclerView = findViewById(R.id.listImage);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        ImageAdapter imageAdapter = new ImageAdapter(imageList);
+        recyclerView.setAdapter(imageAdapter);
+
         dot1 = findViewById(R.id.dot1);
         dot2 = findViewById(R.id.dot2);
         dot3 = findViewById(R.id.dot3);
+        dot4 = findViewById(R.id.dot4);
+        dot5 = findViewById(R.id.dot5);
+        dot6 = findViewById(R.id.dot6);
+        dot7 = findViewById(R.id.dot7);
+        dot8 = findViewById(R.id.dot8);
+        dot9 = findViewById(R.id.dot9);
 
         // Tự động trượt
-        final Handler handler = new Handler();
-        final Runnable runnable = new Runnable() {
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 if (currentPage == slideshowImages.length) {
@@ -70,14 +99,31 @@ public class MainActivity extends AppCompatActivity {
                 if (currentPage == 1) {
                     dot1.setImageResource(R.drawable.ic_dot_active);
                     dot2.setImageResource(R.drawable.ic_dot_inactive);
-                    dot3.setImageResource(R.drawable.ic_dot_inactive);
+                    dot9.setImageResource(R.drawable.ic_dot_inactive);
                 } else if (currentPage == 2) {
                     dot2.setImageResource(R.drawable.ic_dot_active);
                     dot1.setImageResource(R.drawable.ic_dot_inactive);
-                    dot3.setImageResource(R.drawable.ic_dot_inactive);
                 } else if (currentPage == 3) {
                     dot3.setImageResource(R.drawable.ic_dot_active);
                     dot2.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 4) {
+                    dot4.setImageResource(R.drawable.ic_dot_active);
+                    dot3.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 5) {
+                    dot5.setImageResource(R.drawable.ic_dot_active);
+                    dot4.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 6) {
+                    dot6.setImageResource(R.drawable.ic_dot_active);
+                    dot5.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 7) {
+                    dot7.setImageResource(R.drawable.ic_dot_active);
+                    dot6.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 8) {
+                    dot8.setImageResource(R.drawable.ic_dot_active);
+                    dot7.setImageResource(R.drawable.ic_dot_inactive);
+                }else if (currentPage == 9) {
+                    dot9.setImageResource(R.drawable.ic_dot_active);
+                    dot8.setImageResource(R.drawable.ic_dot_inactive);
                     dot1.setImageResource(R.drawable.ic_dot_inactive);
                 }
             }

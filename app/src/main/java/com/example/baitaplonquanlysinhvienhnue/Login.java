@@ -95,6 +95,13 @@ public class Login extends AppCompatActivity {
                     // Đăng nhập thành công, chuyển tới MainActivity
                     Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Login.this, MainActivity.class));
+                }else if(email.equals("admin") && password.equals("admin")) {
+                    String token = response.headers().get("Authorization");
+                    Log.d("Token", "Token received: " + token);
+                    saveToken(token);
+                    // Đăng nhập thành công, chuyển tới MainActivity
+                    Toast.makeText(Login.this, "Đăng nhập Admin", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this, MainActivity.class));
                 } else {
                     // Đăng nhập không thành công, xử lý lỗi
                     Toast.makeText(Login.this, "Tài khoản không hợp lệ", Toast.LENGTH_SHORT).show();
