@@ -28,7 +28,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
     public User(String fullName,String phoneNumber, String email, String password) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -134,5 +133,12 @@ public class User implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+    public String toString() {
+        return "User{" +
+                "fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

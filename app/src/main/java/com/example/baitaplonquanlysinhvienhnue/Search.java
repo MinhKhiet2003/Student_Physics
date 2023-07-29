@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -42,7 +43,7 @@ public class Search extends AppCompatActivity {
         rcvUser = findViewById(R.id.rcv_users);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvUser.setLayoutManager(linearLayoutManager);
-        userAdapter = new UserAdapter(listUser);
+        userAdapter = new UserAdapter(this,listUser);
         rcvUser.setAdapter(userAdapter);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rcvUser.addItemDecoration(itemDecoration);

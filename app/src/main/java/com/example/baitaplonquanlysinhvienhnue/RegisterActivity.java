@@ -95,51 +95,22 @@ public class RegisterActivity extends AppCompatActivity {
         User user = new User(name,phone,email,password);
         // Gửi yêu cầu API đến endpoint "register"
         ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
-        Call<List<User>> callGet = apiService.getUser();
-        callGet.enqueue(new Callback<List<User>>() {
+        Call<List<User>> callPost = apiService.register(user);
+        callPost.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-             //   Toast.makeText(RegisterActivity.this,"Connect API",Toast.LENGTH_SHORT).show();
-                List<User> users = response.body();
-                Log.d("213",users+"");
-                for (User user : users) {
-                    if(user.getEmail().equals(email) ){
-                        checkEmail = true;
-                        break;
-                    }
-                    else {
-                        checkEmail = false;
-                    }
-                }
-                if(checkEmail == true){
-                    Toast.makeText(RegisterActivity.this,"Email đã tồn tại",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Call<Void> callPost = apiService.register(user);
-                    callPost.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            // Xử lý khi có lỗi xảy ra
-                            Toast.makeText(RegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-
+                // Xử lý khi có lỗi xảy ra
+                Toast.makeText(RegisterActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

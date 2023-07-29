@@ -1,7 +1,9 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -81,42 +83,35 @@ public class Login extends AppCompatActivity {
             return;
         }
         ApiSevice apiService = RetrofitClient.getRetrofitInstance().create(ApiSevice.class);
-        Call<List<User>> call = apiService.getUser();
+        Call<Void> call = apiService.login(new User(email, password));
 
-        call.enqueue(new Callback<List<User>>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    List<User> users = response.body();
-
-//                    StringBuilder names = new StringBuilder();
-                    for (User user : users) {
-//                        names.append(user.getName()).append("\n");
-                        if(email.equals(user.getEmail())  && password.equals(user.getPassword())){
-                            check = true;
-                            break;
-                        }
-                        else{
-                            check = false;
-                        }
-                    }
-                    if(check == true){
-                        Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(Login.this, "Tài khoản không hợp lệ", Toast.LENGTH_SHORT).show();
-                    }
+                    String token = response.headers().get("Authorization");
+                    Log.d("Token", "Token received: " + token);
+                    saveToken(token);
+                    // Đăng nhập thành công, chuyển tới MainActivity
+                    Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Login.this, MainActivity.class));
                 } else {
-                    Toast.makeText(Login.this, "Có lỗi ", Toast.LENGTH_SHORT).show();
+                    // Đăng nhập không thành công, xử lý lỗi
+                    Toast.makeText(Login.this, "Tài khoản không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 // Xử lý khi có lỗi xảy ra
                 Toast.makeText(Login.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void saveToken(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.apply();
     }
 }

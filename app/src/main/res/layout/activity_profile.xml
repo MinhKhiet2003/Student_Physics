@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6fa"
+    tools:context=".Menu">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bot"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--height = 0 & Bottom_toTopOf="@+id/bot" để chiều dài của layout ko trùng
+        vào thanh bottom (bottom to top of là phần kết thúc cái này nằm ở top cái kia)-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="#a095c4"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/avt"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/imageradius"
+                    android:clipToOutline="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/sena" />
+            </LinearLayout> <!--layout avt-->
+            <!--scaleType để ảnh luôn fit ở giữa theo kích thước, drawable tự thêm để bo
+         tròn ảnh, clipping bắt buộc khi bo tròn theo cách này-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:fontFamily="serif"
+                android:text="THÔNG TIN SINH VIÊN"
+                android:textColor="#211551"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="serif"
+                    android:text="Họ tên:"
+                    android:textColor="#211551"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="serif"
+                    android:text="Nguyễn Văn A"
+                    android:textColor="#3a2885"
+                    android:textSize="25dp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout> <!--layout họ tên-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="serif"
+                    android:text="SĐT:"
+                    android:textColor="#211551"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="serif"
+                    android:text="0123456789"
+                    android:textColor="#3a2885"
+                    android:textSize="25dp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout> <!--layout sdt-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="serif"
+                    android:text="Email:"
+                    android:textColor="#211551"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="serif"
+                    android:text="abdc@gmail.com"
+                    android:textColor="#3a2885"
+                    android:textSize="25dp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout> <!--layout mail-->
+
+        </LinearLayout> <!--layout thông tin-->
+
+    <LinearLayout
+        android:id="@+id/bot"
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:background="#D4D5D6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="4">
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24"/>
+        <ImageButton
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_edit_24"/>
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_search_24"/>
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_menu_24"/>
+        <!-- Đặt width các icon = 0 vì dùng weight sum để tự chia đều-->
+    </LinearLayout> <!--layout bottom-->
+</androidx.constraintlayout.widget.ConstraintLayout>

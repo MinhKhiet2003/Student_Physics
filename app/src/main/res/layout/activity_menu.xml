@@ -4,48 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e6e6fa"
     tools:context=".Menu">
-    <RelativeLayout
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bot"
+        android:orientation="vertical">
+        <!--height = 0 & Bottom_toTopOf="@+id/bot" để chiều dài của layout ko trùng
+        vào thanh bottom (bottom to top of là phần kết thúc cái này nằm ở top cái kia)-->
+        <ImageButton
+            android:id="@+id/avt"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="50dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/sena"
+            android:background="@drawable/imageradius"
+            android:clipToOutline="true"/>
+        <!--scaleType để ảnh luôn fit ở giữa theo kích thước, drawable tự thêm để bo tròn ảnh-->
+        <Button
+            android:id="@+id/btnThayAvt"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Đổi ảnh đại diện"
+            android:textSize="30dp"
+            android:textStyle="italic"
+            android:textColor="#f5f5f5"/>
+        <Button
+            android:id="@+id/btnSuaTen"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Chỉnh sửa tên"
+            android:textSize="30dp"
+            android:textStyle="italic"
+            android:textColor="#f5f5f5"/>
+        <Button
+            android:id="@+id/btnSuaTT"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Chỉnh sửa thông tin"
+            android:textSize="30dp"
+            android:textStyle="italic"
+            android:textColor="#f5f5f5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bot"
         android:layout_width="match_parent"
         android:layout_height="200px"
         android:background="#D4D5D6"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200px"
-            >
-            <ImageButton
-                android:id="@+id/home"
-                android:layout_width="270px"
-                android:layout_height="200px"
-                android:src="@drawable/baseline_home_24"/>
-            <ImageButton
-                android:id="@+id/edit"
-                android:layout_width="270px"
-                android:layout_height="200px"
-                android:src="@drawable/baseline_edit_24"/>
-            <ImageButton
-                android:id="@+id/search"
-                android:layout_width="270px"
-                android:layout_height="200px"
-                android:src="@drawable/baseline_search_24"/>
-            <ImageButton
-                android:id="@+id/menu"
-                android:layout_width="270px"
-                android:layout_height="200px"
-                android:src="@drawable/baseline_menu_24"/>
-        </LinearLayout>
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Menu"
-            android:textSize="200dp"></TextView>
+        android:weightSum="4">
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24"/>
+        <ImageButton
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_edit_24"/>
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_search_24"/>
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_menu_24"/>
+        <!-- Đặt width các icon = 0 vì dùng weight sum để tự chia đều-->
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
