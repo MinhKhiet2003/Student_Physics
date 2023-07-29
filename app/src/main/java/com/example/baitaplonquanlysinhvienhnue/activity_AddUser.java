@@ -107,6 +107,11 @@ public class activity_AddUser extends AppCompatActivity {
             // Tạo đối tượng User mới từ dữ liệu được nhập
 
             User newUser=new User(msv,name,dateOfBirth,address,className,isMale,Email,PhoneNumber);
+            if (isMale) {
+                newUser.setResourceID(R.drawable.male);
+            } else {
+                newUser.setResourceID(R.drawable.female);
+            }
 
 //            // Hiển thị thông tin User bằng Toast
 //            String userInfo = "Họ và tên: " + name + "\n"

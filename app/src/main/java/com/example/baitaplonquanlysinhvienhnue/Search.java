@@ -73,6 +73,13 @@ public class Search extends AppCompatActivity {
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()) {
                     listUser.addAll(response.body());
+                    for (User user : listUser) {
+                        if (user.isGender()) {
+                            user.setResourceID(R.drawable.male); // Set female avatar resource
+                        } else {
+                            user.setResourceID(R.drawable.female); // Set male avatar resource
+                        }
+                    }
                     userAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(Search.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();

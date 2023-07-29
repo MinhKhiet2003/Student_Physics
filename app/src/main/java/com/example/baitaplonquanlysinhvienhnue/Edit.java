@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class Edit extends AppCompatActivity {
     ImageButton edit;
     ImageButton search;
     ImageButton menu;
+    Image img_avt;
     private Button btnAddUser;
 
     @Override
@@ -57,7 +59,10 @@ public class Edit extends AppCompatActivity {
             // Cập nhật adapter
             userAdapter.notifyDataSetChanged();
         }
+
         fetchUsers();
+
+
     }
 
 
@@ -69,6 +74,13 @@ public class Edit extends AppCompatActivity {
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful()) {
                     userList.addAll(response.body());
+                    for (User user : userList) {
+                        if (user.isGender()) {
+                            user.setResourceID(R.drawable.male); // Set female avatar resource
+                        } else {
+                            user.setResourceID(R.drawable.female); // Set male avatar resource
+                        }
+                    }
                     userAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(Edit.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();

@@ -40,7 +40,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:fontFamily="serif"
-                android:text="THÔNG TIN SINH VIÊN"
+                android:text="THÔNG TIN GIÁO VIÊN"
                 android:textColor="#211551"
                 android:textSize="30dp"
                 android:textStyle="bold" />
