@@ -1,6 +1,7 @@
 package com.example.baitaplonquanlysinhvienhnue;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -32,6 +34,7 @@ import retrofit2.Response;
 public class ForgotPasswordActivity extends AppCompatActivity {
     EditText editTextTenEmailQuenMK,editTextNhapMKQuenMK,editTextNhapLaiMatKhauQuenMK,editTextOTPEmailQuenMK;
     Button btnThayDoi,btnQuayLaiQuenMK,btnMaOTP;
+    TextView textView;
     int content;
     boolean checkEmail = false;
     Switch btnSwitch;
@@ -47,9 +50,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(btnSwitch.isChecked()){
                     layout.setBackground(getResources().getDrawable(R.drawable.bgr_login));
+                    setThemeColors(Color.parseColor("#000000"));
                 }
                 else{
                     layout.setBackground(getResources().getDrawable(R.drawable.bgr_register));
+                    setThemeColors(Color.parseColor("#FFFFFF"));
                 }
             }
         });
@@ -124,7 +129,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             });
                         }
                         else {
-                            Toast.makeText(ForgotPasswordActivity.this, "Mật khẩu không trùng khớp hoặc email không tồn tại", Toast.LENGTH_SHORT).show();
+                            if( !newPassWordAgain.equals(newPassWord)){
+                                Toast.makeText(ForgotPasswordActivity.this, "Mật khẩu không trùng khớp ", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(!maOTP.equals(String.valueOf(content))){
+                                Toast.makeText(ForgotPasswordActivity.this, "Mã OTP không chính xác", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
 
@@ -142,7 +152,17 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
     }
-
+    private void setThemeColors(int textColor) {
+        editTextTenEmailQuenMK.setTextColor(textColor);
+        editTextNhapMKQuenMK.setTextColor(textColor);
+        editTextNhapLaiMatKhauQuenMK.setTextColor(textColor);
+        editTextOTPEmailQuenMK.setTextColor(textColor);
+        textView.setTextColor(textColor);
+        editTextTenEmailQuenMK.setHintTextColor(textColor);
+        editTextNhapMKQuenMK.setHintTextColor(textColor);
+        editTextNhapLaiMatKhauQuenMK.setHintTextColor(textColor);
+        editTextOTPEmailQuenMK.setHintTextColor(textColor);
+    }
     private void addView() {
         editTextTenEmailQuenMK = findViewById(R.id.editTextTenEmailQuenMK);
         editTextNhapMKQuenMK = findViewById(R.id.editTextNhapMKQuenMK);
@@ -151,6 +171,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         btnQuayLaiQuenMK = findViewById(R.id.btnQuayLaiQuenMK);
         editTextOTPEmailQuenMK=findViewById(R.id.editTextOTPEmailQuenMK);
         btnMaOTP=findViewById(R.id.btnMaOTP);
+        textView = findViewById(R.id.textView);
     }
     private void sendEmail(){
         try {

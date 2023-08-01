@@ -25,7 +25,7 @@ public interface ApiSevice {
 
 
     @POST("register")
-    Call<List<User>> register(@Body User user);
+    Call<User> register(@Body User user);
     @POST("login")
     Call<Void> login(@Body User user);
     @GET("tkmk")
